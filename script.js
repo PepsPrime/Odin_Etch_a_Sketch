@@ -1,11 +1,34 @@
 let container = document.querySelector("div.container");
 
-for(i=0; i < 256;i++) {
+
+
+for(i=0; i < 32*32;i++) {
     let box = document.createElement("div");
-    box.innerText =`--`
+    box.classList.add("box");
+/*     box.innerText = "--" */
     container.appendChild(box);
     
 }
+
+let btn = document.querySelector("button")
+let boxGrid = document.querySelectorAll(".box")
+
+btn.addEventListener("click", function(e) {
+    let sideLength = Number(prompt("Enter the number of square per side : ",32))
+    while(container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
+    let newLength = 960/sideLength;
+    for(i=0; i < sideLength**2 ;i++) {
+            let box = document.createElement("div");
+            box.className = "box"
+            box.style.width = `${newLength}px`
+            box.style.height = `${newLength}px`
+            container.appendChild(box);
+            
+    }
+
+    })
 
 
 /* container.forEach(function(element) {
@@ -15,5 +38,5 @@ for(i=0; i < 256;i++) {
 }) */
 
 container.addEventListener("mouseover", function (e) {
-    e.target.setAttribute("style","background-color : red")
+    e.target.style.backgroundColor = "red"
 })
